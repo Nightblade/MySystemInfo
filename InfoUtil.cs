@@ -62,15 +62,9 @@ namespace MySystemInfo
                     {
                         try
                         {
-                            if (obj.Properties[property.Name].Value != null) // To stop exception
-                            {
-                                StringBuilder1.AppendLine((property.Name + ": ").PadRight(41) +
-                                                          obj.Properties[property.Name].Value.ToString());
-                            }
-                            else
-                            {
-                                StringBuilder1.AppendLine((property.Name + ": ").PadRight(41) + "-");
-                            }
+                            var propValue = obj.Properties[property.Name]?.Value;
+
+                            StringBuilder1.AppendLine($"{property.Name}: ".PadRight(41) + (propValue?.ToString() ?? "-"));
                         }
                         catch
                         {
